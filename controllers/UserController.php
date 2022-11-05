@@ -37,7 +37,6 @@ class UserController extends BehaviorsController
      */
     public function actionIndex()
     {
- 
         $searchModel = new UserModelSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -55,7 +54,6 @@ class UserController extends BehaviorsController
      */
     public function actionView($id)
     {
-        
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -69,7 +67,6 @@ class UserController extends BehaviorsController
     public function actionCreate()
     {
         $model = new UserModel();
-
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->password = Yii::$app->security->generatePasswordHash($model->password);
@@ -80,7 +77,6 @@ class UserController extends BehaviorsController
         } else {
             $model->loadDefaultValues();
         }
-        
         return $this->render('create', [
             'model' => $model,
         ]);
@@ -96,8 +92,6 @@ class UserController extends BehaviorsController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $oldpass = $model->password;
-
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->password = Yii::$app->security->generatePasswordHash($model->password);
@@ -105,9 +99,7 @@ class UserController extends BehaviorsController
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
-
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);
