@@ -1,0 +1,1 @@
+<h1>Show info page!</h1>
