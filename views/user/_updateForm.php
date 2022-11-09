@@ -15,8 +15,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'newPassword')->passwordInput(['maxlength' => true])->label("Password") ?>
 
+    <?= $form->field($model, 'passwordRepeat')->passwordInput(['maxlength' => true])->label("Confirm Password") ?>
     <?= $form->field($model, 'date_reg')->textInput() ?>
 
     <div class="form-group">

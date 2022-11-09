@@ -15,6 +15,8 @@ use Yii;
  */
 class UserModel extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    public $newPassword;
+    public $passwordRepeat;
     /**
      * {@inheritdoc}
      */
@@ -33,7 +35,7 @@ class UserModel extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
             [['date_reg'], 'date', 'format'=>'php:Y-m-d'],
             [['date_reg'], 'default', 'value' => date('Y-m-d')],
             [['name'], 'string', 'max' => 64],
-            [['email', 'password'], 'string', 'max' => 100],
+            [['email', 'password', 'newPassword', 'passwordRepeat'], 'string', 'max' => 100],
         ];
     }
 

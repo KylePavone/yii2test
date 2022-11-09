@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\UserModel;
 use app\models\UserModelSearch;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
@@ -70,7 +71,6 @@ class UserController extends BehaviorsController
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $model->password = Yii::$app->security->generatePasswordHash($model->password);
-                //var_dump($model->password);die;
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
@@ -92,9 +92,17 @@ class UserController extends BehaviorsController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $actualPassword = $model->password;
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
-                $model->password = Yii::$app->security->generatePasswordHash($model->password);
+                if ($model->newPassword == "" && $model->passwordRepeat == "") {
+                    $model->password = $actualPassword;
+                }else if ($model->newPassword !== $model->passwordRepeat) {
+                    throw new HttpException(417, "wrong passwords");
+                } else {
+                    $model->password = Yii::$app->security->generatePasswordHash($model->newPassword);
+                }
+
                 $model->date_reg = date("Y-m-d", time());
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
