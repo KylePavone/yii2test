@@ -37,6 +37,7 @@ class UserModel extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
             [['name'], 'string', 'max' => 64],
             [['email', 'password', 'newPassword', 'passwordRepeat'], 'string', 'max' => 100],
             [['newPassword',], 'compare', 'compareAttribute' => 'passwordRepeat', 'message' => 'Passwords do not match'],
+            [['passwordRepeat',], 'compare', 'compareAttribute' => 'newPassword', 'message' => 'Passwords do not match'],
         ];
     }
 
