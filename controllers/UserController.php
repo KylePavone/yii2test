@@ -97,8 +97,6 @@ class UserController extends BehaviorsController
             if ($model->load($this->request->post())) {
                 if ($model->newPassword == "" && $model->passwordRepeat == "") {
                     $model->password = $actualPassword;
-                }else if ($model->newPassword !== $model->passwordRepeat) {
-                    throw new HttpException(417, "wrong passwords");
                 } else {
                     $model->password = Yii::$app->security->generatePasswordHash($model->newPassword);
                 }

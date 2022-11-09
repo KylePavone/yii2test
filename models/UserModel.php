@@ -36,6 +36,7 @@ class UserModel extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
             [['date_reg'], 'default', 'value' => date('Y-m-d')],
             [['name'], 'string', 'max' => 64],
             [['email', 'password', 'newPassword', 'passwordRepeat'], 'string', 'max' => 100],
+            [['newPassword',], 'compare', 'compareAttribute' => 'passwordRepeat', 'message' => 'Passwords do not match'],
         ];
     }
 
