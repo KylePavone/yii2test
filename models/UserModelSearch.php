@@ -22,6 +22,7 @@ class UserModelSearch extends UserModel
         ];
     }
 
+
     /**
      * {@inheritdoc}
      */

@@ -20,7 +20,7 @@ class UserModel extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
      */
     public static function tableName()
     {
-        return 'user_model';
+        return 'user';
     }
 
     /**

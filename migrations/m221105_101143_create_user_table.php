@@ -18,8 +18,8 @@ class m221105_101143_create_user_table extends Migration
             'email' => $this->string(100)->notNull(),
             'password' => $this->string(100)->notNull(),
             'date_reg' => $this->timestamp(),
-
         ]);
+      /*  */
     }
 
     /**
